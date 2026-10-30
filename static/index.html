@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0–90 Календарь — обои недели жизни для iPhone 13</title>
+<style>
+  :root{
+    --bg:#f0f0f0; --card:#ffffff; --soft:#f4f4f5; --text:#1c1c1e; --muted:#6b7280;
+    --navy:#143a52; --sky:#aee1f9; --accent:#1e4a66; --warn:#fff6dd;
+    --radius:20px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.45;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1060px; margin:0 auto; padding:28px 18px 60px}
+
+  /* ---------- Шапка ---------- */
+  header{display:flex; align-items:center; gap:14px; margin-bottom:26px}
+  header img{width:64px; height:auto}
+  header .brand{font-size:26px; font-weight:800; letter-spacing:.04em; line-height:1.05; color:#8e8e93}
+  header .brand b{display:block; color:#8e8e93}
+  header .device{margin-left:auto; background:var(--card); border-radius:999px;
+    padding:8px 16px; font-weight:700; font-size:14px; box-shadow:0 1px 6px rgba(0,0,0,.06)}
+  header .device span{color:var(--muted); font-weight:600}
+
+  /* ---------- Верх: текст + телефон ---------- */
+  .hero{display:grid; grid-template-columns:1fr 360px; gap:28px; align-items:start}
+  @media (max-width:860px){ .hero{grid-template-columns:1fr} .phone-col{margin:0 auto} }
+  .hero h1{font-size:34px; line-height:1.15; margin:6px 0 12px}
+  .hero p.lead{font-size:17px; color:#3a3a3c; max-width:520px}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 6px}
+  .chip{background:var(--card); border-radius:999px; padding:7px 14px; font-size:13.5px;
+    font-weight:600; box-shadow:0 1px 6px rgba(0,0,0,.05); display:flex; align-items:center; gap:7px}
+  .dot{width:14px; height:14px; border-radius:50%; background:var(--sky); border:1px solid #d7d7db; display:inline-block}
+
+  /* Мокап телефона */
+  .phone-col{width:330px}
+  .phone{
+    width:330px; aspect-ratio:1170/2532; background:#000; border-radius:52px;
+    padding:11px; box-shadow:0 18px 50px rgba(0,0,0,.25); position:relative;
+  }
+  .screen{position:relative; width:100%; height:100%; border-radius:42px; overflow:hidden; background:var(--sky)}
+  .screen img.wall{width:100%; height:100%; object-fit:cover; display:block}
+  .notch{position:absolute; top:9px; left:50%; transform:translateX(-50%);
+    width:44%; height:22px; background:#000; border-radius:0 0 16px 16px}
+  .clock{position:absolute; top:11%; left:0; right:0; text-align:center; color:var(--navy)}
+  .clock .date{font-size:15px; font-weight:600}
+  .clock .time{font-size:64px; font-weight:800; line-height:1.02; letter-spacing:-.01em}
+  .lock-btns{position:absolute; bottom:4.5%; left:0; right:0; display:flex;
+    justify-content:space-between; padding:0 13%}
+  .lock-btns .b{width:42px; height:42px; border-radius:50%; background:rgba(20,58,82,.35);
+    display:flex; align-items:center; justify-content:center}
+  .lock-btns svg{width:20px; height:20px; fill:#fff}
+  .homebar{position:absolute; bottom:7px; left:50%; transform:translateX(-50%);
+    width:38%; height:4px; border-radius:2px; background:rgba(20,58,82,.55)}
+
+  /* ---------- Карточки / форма ---------- */
+  .card{background:var(--card); border-radius:var(--radius); padding:24px;
+    box-shadow:0 2px 14px rgba(0,0,0,.05); margin-top:26px}
+  .card h2{font-size:22px; margin-bottom:14px}
+  .dob{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:10px; max-width:520px}
+  .dob label{display:block; font-size:12px; font-weight:700; letter-spacing:.06em;
+    color:var(--muted); text-transform:uppercase; margin-bottom:5px}
+  .dob input{width:100%; padding:12px; font-size:17px; text-align:center; font-weight:700;
+    border:1.5px solid #d9d9de; border-radius:10px; outline:none; background:#fff}
+  .dob input:focus{border-color:var(--accent)}
+  .error{color:#c0392b; font-weight:600; font-size:14px; min-height:20px; margin-top:8px}
+  .fixed-note{margin-top:6px; font-size:14px; color:var(--muted)}
+  button.main, a.main{
+    display:block; width:100%; text-align:center; margin-top:16px; border:none; cursor:pointer;
+    background:var(--navy); color:#fff; font-size:17px; font-weight:800; letter-spacing:.04em;
+    padding:16px; border-radius:14px; text-decoration:none; text-transform:uppercase;
+  }
+  button.main:active, a.main:active{transform:scale(.99)}
+  a.main.secondary{background:#fff; color:var(--navy); border:2px solid var(--navy)}
+
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:18px}
+  @media (max-width:700px){ .stats{grid-template-columns:repeat(2,1fr)} }
+  .stat{background:var(--soft); border-radius:14px; padding:14px 12px; text-align:center}
+  .stat .v{font-size:24px; font-weight:800; color:var(--navy)}
+  .stat .l{font-size:12.5px; color:var(--muted); font-weight:600; margin-top:2px}
+
+  .linkrow{display:flex; gap:8px; margin-top:10px}
+  .linkrow input{flex:1; padding:12px; font-size:13.5px; border:1.5px solid #d9d9de;
+    border-radius:10px; background:var(--soft); color:#333; min-width:0}
+  .linkrow button{border:1.5px solid #d9d9de; background:#fff; border-radius:10px;
+    padding:0 16px; font-size:15px; cursor:pointer; font-weight:700}
+  .copied{font-size:13px; color:#1e7a34; font-weight:700; min-height:18px; margin-top:6px}
+
+  /* ---------- Инструкция ---------- */
+  .step{margin-top:20px}
+  .step h3{font-size:18px; margin-bottom:6px}
+  .step p{font-size:15.5px; color:#2c2c2e; max-width:640px}
+  .hintbox{background:var(--soft); border-radius:14px; padding:14px 16px; margin-top:10px; max-width:640px}
+  .hintbox .row{display:flex; gap:10px; align-items:baseline; padding:3px 0; font-size:15px}
+  .hintbox .ico{width:22px; text-align:center; flex:none}
+  .tip{background:var(--warn); border-radius:14px; padding:16px 18px; margin-top:24px; max-width:700px}
+  .tip b.title{color:#9a7b12; display:block; margin-bottom:4px}
+  .important{background:#eef6fb; border-radius:14px; padding:16px 18px; margin-top:14px; max-width:700px; font-size:15px}
+  footer{margin-top:34px; text-align:center; color:var(--muted); font-size:13.5px}
+  code{background:var(--soft); padding:1px 6px; border-radius:6px; font-size:.92em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img src="assets/logo.png" alt="Логотип">
+    <div class="brand">0–90<b>КАЛЕНДАРЬ</b></div>
+    <div class="device">iPhone 13 <span>· 1170×2532</span></div>
+  </header>
+
+  <div class="hero">
+    <div>
+      <h1>Вся жизнь — на экране блокировки</h1>
+      <p class="lead">Создавайте обои для iPhone 13, которые обновляются сами.
+      Каждая точка — одна неделя жизни от 0 до 90 лет: тёмные уже прожиты,
+      белые ещё впереди, а текущая неделя отмечена вашим логотипом.</p>
+      <div class="chips">
+        <span class="chip"><span class="dot"></span>Светло-голубой фон</span>
+        <span class="chip">52 недели × 90 лет = 4680 точек</span>
+        <span class="chip">Автообновление через «Команды»</span>
+      </div>
+
+      <div class="card" style="margin-top:20px">
+        <h2>0–90 календарь</h2>
+        <div class="dob">
+          <div><label for="year">Год</label><input id="year" type="number" inputmode="numeric" value="2000" min="1900" max="2100"></div>
+          <div><label for="month">Месяц</label><input id="month" type="number" inputmode="numeric" value="1" min="1" max="12"></div>
+          <div><label for="day">День</label><input id="day" type="number" inputmode="numeric" value="1" min="1" max="31"></div>
+        </div>
+        <div class="error" id="error"></div>
+        <p class="fixed-note">Модель: <b>iPhone 13</b> · фон: <b>светло-голубой</b> · срок: <b>90 лет</b> — без лишних настроек.</p>
+        <button class="main" id="createBtn">Создать обои</button>
+        <a class="main secondary" id="downloadBtn" href="#" download>Скачать PNG</a>
+
+        <div class="stats">
+          <div class="stat"><div class="v" id="stLived">—</div><div class="l">недель прожито</div></div>
+          <div class="stat"><div class="v" id="stCurrent">—</div><div class="l">текущая неделя</div></div>
+          <div class="stat"><div class="v" id="stLeft">—</div><div class="l">недель осталось</div></div>
+          <div class="stat"><div class="v" id="stPercent">—</div><div class="l">пути до 90 пройдено</div></div>
+        </div>
+
+        <h2 style="margin-top:24px">Ссылка для автоматизации</h2>
+        <p style="font-size:14.5px;color:#3a3a3c">Эту ссылку нужно вставить в приложение «Команды» (шаг 5 ниже).
+        По ней сервер каждый раз отдаёт свежие обои на сегодняшний день.</p>
+        <div class="linkrow">
+          <input id="apiLink" readonly value="">
+          <button id="copyBtn" title="Скопировать">⧉</button>
+        </div>
+        <div class="copied" id="copied"></div>
+      </div>
+    </div>
+
+    <div class="phone-col">
+      <div class="phone">
+        <div class="screen">
+          <img class="wall" id="wallImg" alt="Превью обоев">
+          <div class="notch"></div>
+          <div class="clock">
+            <div class="date" id="lockDate">—</div>
+            <div class="time" id="lockTime">—</div>
+          </div>
+          <div class="lock-btns">
+            <div class="b"><svg viewBox="0 0 24 24"><path d="M9 2h6v3H9zM8 6h8l-1 5h-6zM9.5 12h5V22h-5z"/></svg></div>
+            <div class="b"><svg viewBox="0 0 24 24"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.4" fill="#143a52"/></svg></div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+      </div>
+      <p style="text-align:center;color:var(--muted);font-size:13px;margin-top:10px">
+        Живое превью: часы и дата дорисованы для наглядности,<br>на телефоне их показывает сам iPhone.</p>
+    </div>
+  </div>
+
+  <!-- ===================== ИНСТРУКЦИЯ ===================== -->
+  <div class="card">
+    <h2>Автообновление обоев</h2>
+    <p style="font-size:15.5px;color:#3a3a3c;max-width:640px">
+      Настрой автоматизацию один раз — телефон сам будет скачивать обои по ссылке выше.
+      Картинка каждый день запрашивается заново, а логотип сдвигается на следующую точку,
+      когда начинается новая неделя вашей жизни.</p>
+
+    <div class="step">
+      <h3>1. Открой приложение «Команды»</h3>
+      <p>Это встроенное приложение Apple. Если не можешь найти — потяни вниз на домашнем экране и напиши <b>Команды</b>.</p>
+      <div class="hintbox"><div class="row"><span class="ico">📱</span><span>Найди приложение <b>«Команды»</b> (Shortcuts)</span></div></div>
+    </div>
+
+    <div class="step">
+      <h3>2. Перейди в «Автоматизация»</h3>
+      <p>Внизу экрана есть вкладка <b>Автоматизация</b> — нажми на неё.</p>
+    </div>
+
+    <div class="step">
+      <h3>3. Создай новую автоматизацию</h3>
+      <p>Нажми <b>+</b> в правом верхнем углу, затем выбери <b>Время суток</b>.</p>
+    </div>
+
+    <div class="step">
+      <h3>4. Настрой расписание</h3>
+      <div class="hintbox">
+        <div class="row"><span class="ico">🕐</span><span><b>Время:</b> любое удобное (например, 7:00)</span></div>
+        <div class="row"><span class="ico">↩️</span><span><b>Повтор:</b> По дням</span></div>
+        <div class="row"><span class="ico">▶️</span><span><b>Запуск:</b> Немедленный запуск</span></div>
+      </div>
+      <p style="margin-top:8px">Нажми <b>Далее</b>, затем <b>Новая автоматизация</b> (пустая).</p>
+    </div>
+
+    <div class="step">
+      <h3>5. Добавь действие загрузки</h3>
+      <p>В поиске введи <b>Получить содержимое URL</b> и добавь действие.
+      В поле <b>URL</b> вставь ссылку для автоматизации с этой страницы (блок выше).</p>
+    </div>
+
+    <div class="step">
+      <h3>6. Добавь установку обоев</h3>
+      <p>В поиске напиши <b>обои</b> и выбери <b>Установить фото как обои</b>.</p>
+      <div class="hintbox">
+        <div class="row"><span class="ico">🖼️</span><span><b>Изображение:</b> Содержимое URL (подставится автоматически)</span></div>
+        <div class="row"><span class="ico">🔒</span><span><b>Экран:</b> выбери <b>Экран блокировки</b></span></div>
+      </div>
+      <p style="margin-top:8px">Нажми на стрелочку в кружке в этом действии и отключи:</p>
+      <div class="hintbox">
+        <div class="row"><span class="ico">👁️</span><span><b>Показать окно просмотра</b> — отключи</span></div>
+        <div class="row"><span class="ico">✂️</span><span><b>Обрезать до темы</b> — отключи</span></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <h3>7. Сохрани</h3>
+      <p>Нажми <b>Готово</b>. Важно: запуск должен стоять <b>«Немедленный запуск»</b>,
+      а не «После подтверждения» — иначе телефон будет каждый день спрашивать разрешение.</p>
+    </div>
+
+    <div class="tip">
+      <b class="title">💡 Совет</b>
+      Чтобы проверить, что всё работает, — в списке автоматизаций нажми на созданную и выбери
+      <b>Выполнить</b>. Обои должны сразу обновиться.
+    </div>
+
+    <div class="important">
+      <b>Важно про ссылку:</b> телефон скачивает обои из интернета, поэтому сервер должен быть
+      постоянно доступен по публичному адресу (https). Если приложение запущено только на вашем
+      компьютере, автоматизация сработает, лишь пока компьютер включён и находится в той же сети.
+      Как бесплатно выложить сервер в интернет — см. файл <code>README.md</code> в проекте.
+    </div>
+  </div>
+
+  <footer>0–90 календарь · iPhone 13 (1170×2532) · каждая точка — неделя жизни · Действуй сейчас</footer>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const TOTAL_WEEKS = 4680;
+
+function pad(n){ return String(n).padStart(2, "0"); }
+
+function getBirth(){
+  const y = parseInt($("year").value, 10), m = parseInt($("month").value, 10), d = parseInt($("day").value, 10);
+  const dt = new Date(Date.UTC(y, m - 1, d, 12));
+  // Проверка, что дата настоящая (например, 31 февраля JS молча превратит в март)
+  if (!y || !m || !d || dt.getUTCFullYear() !== y || dt.getUTCMonth() !== m - 1 || dt.getUTCDate() !== d)
+    return { error: "Такой даты не существует — проверьте год, месяц и день." };
+  const today = new Date(); today.setUTCHours(12, 0, 0, 0);
+  // Сравнение корректнее по локальной сегодняшней дате:
+  const todayLocal = new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate(), 12));
+  if (dt > todayLocal) return { error: "Дата рождения не может быть в будущем." };
+  if (y < 1900) return { error: "Укажите год не раньше 1900." };
+  return { date: dt, text: `${y}-${pad(m)}-${pad(d)}` };
+}
+
+function updateStats(birthDate){
+  const now = new Date();
+  const today = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), 12));
+  const days = Math.floor((today - birthDate) / 86400000);
+  const end = new Date(birthDate); 
+  // +90 лет тем же способом, что и сервер (29 фев -> 28 фев при необходимости решает сам JS)
+  end.setUTCFullYear(end.getUTCFullYear() + 90);
+  const totalDays = Math.floor((end - birthDate) / 86400000);
+  const weeksLived = Math.min(Math.floor(days / 7), TOTAL_WEEKS);
+  const percent = Math.min(100, Math.max(0, days / totalDays * 100));
+  $("stLived").textContent = weeksLived.toLocaleString("ru-RU");
+  $("stCurrent").textContent = Math.min(weeksLived + 1, TOTAL_WEEKS).toLocaleString("ru-RU");
+  $("stLeft").textContent = Math.max(TOTAL_WEEKS - weeksLived - 1, 0).toLocaleString("ru-RU");
+  $("stPercent").textContent = percent.toFixed(1).replace(".", ",") + "%";
+}
+
+function refresh(){
+  const res = getBirth();
+  $("error").textContent = res.error || "";
+  if (res.error) return;
+
+  // Чистая ссылка для «Команд» — без лишних параметров
+  const clean = (location.protocol === "file:")
+    ? `https://ваш-домен.ru/api/cal?birth=${res.text}`
+    : new URL(`api/cal?birth=${res.text}`, location.href).href;
+  $("apiLink").value = clean;
+
+  // Превью и скачивание — с анти-кэшем, чтобы браузер не показывал старую дату рождения
+  $("wallImg").src = `api/cal?birth=${res.text}&_=${Date.now()}`;
+  $("downloadBtn").href = `api/cal?birth=${res.text}&download=1`;
+  updateStats(res.date);
+}
+
+$("createBtn").addEventListener("click", refresh);
+["year", "month", "day"].forEach(id => $(id).addEventListener("change", refresh));
+
+$("copyBtn").addEventListener("click", async () => {
+  $("apiLink").select();
+  try { await navigator.clipboard.writeText($("apiLink").value); }
+  catch(e){ document.execCommand("copy"); }
+  $("copied").textContent = "Ссылка скопирована ✓ Вставьте её в действие «Получить содержимое URL» (шаг 5).";
+  setTimeout(() => $("copied").textContent = "", 5000);
+});
+
+// Часы на мокапе телефона
+function tick(){
+  const now = new Date();
+  $("lockTime").textContent = `${now.getHours()}:${pad(now.getMinutes())}`;
+  $("lockDate").textContent = now.toLocaleDateString("ru-RU", { weekday: "long", day: "numeric", month: "long" });
+}
+tick(); setInterval(tick, 20000);
+
+refresh();
+</script>
+</body>
+</html>

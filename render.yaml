@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: life-cal-090
+    runtime: python
+    plan: free
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -u app.py
+    healthCheckPath: /api/health
+    envVars:
+      - key: TZ_NAME
+        value: Europe/Moscow
